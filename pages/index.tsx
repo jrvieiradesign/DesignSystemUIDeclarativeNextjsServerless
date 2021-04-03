@@ -3,10 +3,12 @@ import Divider from "../components/Divider";
 import DarkMode from "../components/DarkMode";
 import { Heading, Grid, Flex, Input, Link, Button, Text } from "@chakra-ui/react";
 import LogoRocket from "../assets/RockeseatLogo.svg";
-
+import { useState } from "react";
 export default function Home() {
+  const [ email, setEmail ] = useState('');
   // const color = useColorModeValue("blue.900", "white")
   return (
+   
    <Grid
    as='main'
    h="100vh"
@@ -20,13 +22,17 @@ export default function Home() {
    justifyContent="center"
    alignItems="center" 
    > 
+    
     <Flex gridArea="logo" flexDir="column" alignItems="start">
+    
     <LogoRocket />
 
     <Heading size='2xl' lineHeight="shorter" marginTop={16}>Faça seu login na plataforma</Heading>
+    
     </Flex>
 
     <Flex
+      as='form'
       gridArea='form'
       height='100%'
       backgroundColor='gray.700'
@@ -42,7 +48,10 @@ export default function Home() {
         focusBorderColor='purple.500'
         borderRadius='sm'
         placeholder='E-mail'
+        value={email}
+        onChange={e => setEmail(e.target.value)}
       />
+      
       <Input 
         height='50px'
         backgroundColor='gray.800'
@@ -62,6 +71,7 @@ export default function Home() {
       >
        Esqueci minha senha
       </Link>
+      
       <Button
         borderRadius='sm'
         height='50px'
@@ -78,6 +88,7 @@ export default function Home() {
         marginTop={6}
         >
           Não tem uma conta? {"    "}
+        
         <Link
         color='purple.600'
         fontWeight='bold'
@@ -85,10 +96,14 @@ export default function Home() {
         >
           Registre-se
         </Link>
+        
         </Text>
+        
         <Divider />
+        
         <Flex alignItems='center'>
           <Text fontSize='sm'>Ou entre com</Text>
+          
           <Button
             height='50px'
             flex='1'
@@ -99,8 +114,11 @@ export default function Home() {
           >
             GITHUB
           </Button>
+        
         </Flex>
+    
     </Flex>
+   
    </Grid>
   )
 }
