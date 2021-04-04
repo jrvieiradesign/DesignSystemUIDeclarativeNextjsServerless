@@ -3,9 +3,16 @@ import Divider from "../components/Divider";
 import DarkMode from "../components/DarkMode";
 import { Heading, Grid, Flex, Input, Link, Button, Text } from "@chakra-ui/react";
 import LogoRocket from "../assets/RockeseatLogo.svg";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import axios from 'axios';
 export default function Home() {
   const [ email, setEmail ] = useState('');
+
+  function handleSignUpToNewsletter(event: FormEvent) {
+    event.preventDefault();
+    
+    axios.post('/api/subscribe', { email })
+  }
   // const color = useColorModeValue("blue.900", "white")
   return (
    
@@ -32,6 +39,7 @@ export default function Home() {
     </Flex>
 
     <Flex
+      onSubmit={handleSignUpToNewsletter}
       as='form'
       gridArea='form'
       height='100%'
@@ -73,6 +81,7 @@ export default function Home() {
       </Link>
       
       <Button
+        type="submit"
         borderRadius='sm'
         height='50px'
         backgroundColor='purple.500'
